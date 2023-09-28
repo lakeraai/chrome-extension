@@ -1,0 +1,13 @@
+diff --git a/node_modules/addresser/index.js b/node_modules/addresser/index.js
+index 9b4539d..1b036c3 100644
+--- a/node_modules/addresser/index.js
++++ b/node_modules/addresser/index.js
+@@ -135,7 +135,7 @@ module.exports = {
+       // Next check if the state string ends in state name or abbeviation
+       // (state abbreviation must be preceded by a space to ensure accuracy)
+       for (var key in allStates) {
+-        var re = new RegExp(" " + allStates[key] + "$|" + key + "$", "i");
++        var re = new RegExp(" " + allStates[key] + "$|" + " " + key + "$", "i");
+         if (stateString.match(re)) {
+           stateString = stateString.replace(re,"");
+           result.stateAbbreviation = allStates[key];

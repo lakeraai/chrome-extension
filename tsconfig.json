@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+      "baseUrl": "src",
+      "jsx": "react",
+      "target": "es2015",
+      "module": "es2022",
+      "moduleResolution": "node",
+      "allowJs": false,
+      "esModuleInterop": true,
+      "allowSyntheticDefaultImports": true,
+      "forceConsistentCasingInFileNames": true,
+      "noFallthroughCasesInSwitch": true,
+      "resolveJsonModule": true,
+      "skipLibCheck": true,
+      "strict": true
+    },
+    "include": ["src/**/*"]
+}

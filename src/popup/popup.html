@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="popup.css" />
+    <link rel="stylesheet" type="text/css" href="fontawesome/fontawesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="fontawesome/brands.min.css" />
+  </head>
+
+  <body class="w-[320px] h-[540px]">
+    <div class="container py-4 font-sans subpixel-antialiased divide-y border-b">
+      <div class="container columns-2 px-6 pb-1">
+        <a href="https://www.lakera.ai/" target="_blank">
+          <img src="../../Lakera_Logo.png" alt="Lakera Logo" />
+        </a>
+      </div>
+
+      <div class="container flex flex-col text-sm px-6">
+        <div class="container font-bold text-xs text-slate-500 pt-6 pb-2">
+          TURN DETECTORS ON/OFF
+        </div>
+        <div
+          id="credit-card-number"
+          class="container grid grid-flow-col items-center py-3 detector-toggle"
+        >
+          <div class="col-span-10">
+            <span class="mr-5 break-words">Credit card numbers</span>
+          </div>
+
+          <div class="grid col-span-2 justify-items-end">
+            <label class="relative col-span-6 inline-flex items-center cursor-pointer">
+              <input
+                type="checkbox"
+                class="sr-only peer detector-toggle-input"
+                checked="true"
+              />
+              <div
+                class="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-blue-300 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 dark:border-gray-600 peer-checked:bg-blue-600 detector-toggle-animation"
+              ></div>
+            </label>
+          </div>
+        </div>
+
+        <div
+          id="name"
+          class="container grid grid-flow-col items-center py-3 detector-toggle"
+        >
+          <div class="col-span-10">
+            <span class="mr-5">Names</span>
+          </div>
+          <div class="grid col-span-2 justify-items-end">
+            <label class="relative inline-flex items-center cursor-pointer">
+              <input
+                type="checkbox"
+                class="sr-only peer detector-toggle-input"
+                checked="true"
+              />
+              <div
+                class="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-blue-300 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 dark:border-gray-600 peer-checked:bg-blue-600 detector-toggle-animation"
+              ></div>
+            </label>
+          </div>
+        </div>
+
+        <div
+          id="email-address"
+          class="container grid grid-flow-col items-center py-3 detector-toggle"
+        >
+          <div class="col-span-10">
+            <span class="mr-5">Email addresses</span>
+          </div>
+          <div class="grid col-span-2 justify-items-end">
+            <label class="relative inline-flex items-center cursor-pointer">
+              <input
+                type="checkbox"
+                class="sr-only peer detector-toggle-input"
+                checked="true"
+              />
+              <div
+                class="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-blue-300 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 dark:border-gray-600 peer-checked:bg-blue-600 detector-toggle-animation"
+              ></div>
+            </label>
+          </div>
+        </div>
+
+        <div
+          id="phone-number"
+          class="container grid grid-flow-col items-center py-3 detector-toggle"
+        >
+          <div class="col-span-10">
+            <span class="mr-5">Phone numbers</span>
+          </div>
+          <div class="grid col-span-2 justify-items-end">
+            <label class="relative inline-flex items-center cursor-pointer">
+              <input
+                type="checkbox"
+                class="sr-only peer detector-toggle-input"
+                checked="true"
+              />
+              <div
+                class="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-blue-300 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 dark:border-gray-600 peer-checked:bg-blue-600 detector-toggle-animation"
+              ></div>
+            </label>
+          </div>
+        </div>
+
+        <div
+          id="address"
+          class="container grid grid-flow-col items-center py-3 detector-toggle"
+        >
+          <div class="col-span-10">
+            <span class="mr-5">Addresses</span>
+          </div>
+          <div class="grid col-span-2 justify-items-end">
+            <label class="relative inline-flex items-center cursor-pointer">
+              <input
+                type="checkbox"
+                class="sr-only peer detector-toggle-input"
+                checked="true"
+              />
+              <div
+                class="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-blue-300 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 dark:border-gray-600 peer-checked:bg-blue-600 detector-toggle-animation"
+              ></div>
+            </label>
+          </div>
+        </div>
+        <div
+          id="social-security-number"
+          class="container grid grid-flow-col items-center py-3 detector-toggle"
+        >
+          <div class="col-span-10">
+            <span class="mr-5">Social security numbers</span>
+          </div>
+          <div class="grid col-span-2 justify-items-end">
+            <label class="relative inline-flex items-center cursor-pointer">
+              <input
+                type="checkbox"
+                class="sr-only peer detector-toggle-input"
+                checked="true"
+              />
+              <div
+                class="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-blue-300 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 dark:border-gray-600 peer-checked:bg-blue-600 detector-toggle-animation"
+              ></div>
+            </label>
+          </div>
+        </div>
+
+        <div
+          id="secret-key"
+          class="container grid grid-flow-col items-center py-3 detector-toggle"
+        >
+          <div class="col-span-10">
+            <span class="mr-5">Secret keys</span>
+          </div>
+          <div class="grid col-span-2 justify-items-end">
+            <label class="relative inline-flex items-center cursor-pointer">
+              <input
+                type="checkbox"
+                class="sr-only peer detector-toggle-input"
+                checked="true"
+              />
+              <div
+                class="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-blue-300 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 dark:border-gray-600 peer-checked:bg-blue-600 detector-toggle-animation"
+              ></div>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="container px-6 py-4 font-sans text-sm subpixel-antialiased border-b bg-[#f7f7f7]"
+    >
+      <div class="container font-bold text-xs text-slate-500 pb-2">
+        PRIVATE DATA DETECTED
+      </div>
+
+      <div id="triggered-detectors" class="container">
+        <div
+          class="container grid grid-cols-2 py-2 divide-x items-center rounded-md border bg-white"
+        >
+          <div id="stats-page" class="container grid justify-items-center">
+            <span class="text-slate-600 text-xs">on this page</span>
+          </div>
+          <div id="stats-total" class="container grid justify-items-center">
+            <span class="text-slate-600 text-xs">in total</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container grid grid-cols-2 px-4 py-4 items-center text-xs">
+      <div class="container text-slate-600 grid items-center justify-items-center">
+        Stay connected with us!
+      </div>
+      <div class="container grid items-center justify-items-end">
+        <span class="space-x-2">
+          <a href="https://twitter.com/LakeraAI" target="_blank">
+            <i class="fa-brands fa-twitter text-lg text-slate-600"></i>
+          </a>
+          <a href="https://www.linkedin.com/company/lakeraai/" target="_blank">
+            <i class="fa-brands fa-linkedin text-lg text-slate-600"> </i>
+          </a>
+          <a href="https://www.youtube.com/@lakeraai/videos" target="_blank">
+            <i class="fa-brands fa-youtube text-lg text-slate-600"></i>
+          </a>
+        </span>
+      </div>
+    </div>
+  </body>
+  <script type="module" src="popup.ts"></script>
+</html>

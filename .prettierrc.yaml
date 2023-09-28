@@ -1,0 +1,26 @@
+---
+tabWidth: 2
+useTabs: false
+printWidth: 88
+plugins:
+- "@ianvs/prettier-plugin-sort-imports"
+- prettier-plugin-tailwindcss
+semi: false
+singleQuote: false
+proseWrap: always
+importOrderParserPlugins:
+- typescript
+- jsx
+- decorators-legacy
+importOrder:
+- "<BUILT_IN_MODULES>"
+- ''
+- "<THIRD_PARTY_MODULES>"
+- ''
+# Non-image relative imports
+- "^(?!.*[.](css|png|svg)$)[.]"
+- ''
+# Images
+- "@heroicons"
+- "[.](css|png|svg)$"
+importOrderTypeScriptVersion: 5.0.0
