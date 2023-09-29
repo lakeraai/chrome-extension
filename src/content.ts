@@ -93,6 +93,34 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   }
 })
 
+async function fetchButton (textarea: HTMLTextAreaElement | null): Promise<HTMLButtonElement> {
+  const button: HTMLButtonElement | null =
+    textarea?.parentElement?.querySelector('button') ?? null
+
+  if (button !== null) {
+    return button
+  } else {
+    await delay(RETRY_TIMEOUT)
+    return await fetchButton(textarea)
+  }
+}
+
+function addEventListenersToButton (textarea: HTMLTextAreaElement | null, button: HTMLButtonElement | null): void {
+  button?.addEventListener('click', (event) => {
+    void (async () => {
+      if (event.isTrusted) {
+        event.preventDefault()
+        const proceed = await shouldProceed(textarea)
+        if (proceed) {
+          button?.click()
+          // send message to background script to remove the badge because the prompt was submitted
+          chrome.runtime.sendMessage({ detections: 0 })
+        }
+      }
+    })()
+  })
+}
+
 function addEventListeners (
   textarea: HTMLTextAreaElement | null,
   button: HTMLButtonElement | null
@@ -106,6 +134,8 @@ function addEventListeners (
         event.preventDefault()
         const proceed = await shouldProceed(textarea)
         if (proceed) {
+          // button needs to be fetched again as it might have been rerendered
+          button = await fetchButton(textarea)
           button?.click()
           // send message to background script to remove the badge because the prompt was submitted
           chrome.runtime.sendMessage({ detections: 0 })
@@ -155,6 +185,15 @@ function addMutationObserver (textarea: HTMLTextAreaElement | null): void {
       // send message to background script to remove the badge because the textarea is no longer present
       chrome.runtime.sendMessage({ detections: 0 })
       void manageFetchDomElements()
+    } else if (!document.body.contains(promptElements.button)) {
+      void (async () => {
+        // we need to fetch the button again because it might have been rerendered
+        const button = await fetchButton(textarea)
+        if (promptElements.button !== button) {
+          promptElements.button = button
+          addEventListenersToButton(textarea, button)
+        }
+      })()
     }
   }
 
