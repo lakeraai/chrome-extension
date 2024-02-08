@@ -1,7 +1,11 @@
 import luhn from 'luhn'
 import nlp from 'compromise'
-import phone from 'phone'
 import addresser from 'addresser'
+
+import { findPhoneNumbersInText } from 'libphonenumber-js'
+
+import type { CountryCode, NumberFound } from 'libphonenumber-js/types'
+
 import {
   GROUP_CREDIT_CARD_DIGITS,
   CREDIT_CARD_REGEX_STR,
@@ -12,6 +16,7 @@ import {
   SECRET_KEY_REGEX,
   SSN_REGEX
 } from './config'
+
 import {
   type Pii,
   registerDetectors,
@@ -71,16 +76,59 @@ export function isEmail (promptText: string): Pii {
 }
 
 export function isPhoneNumber (promptText: string): Pii {
-  const splitPromptText: string[] = promptText.split(/[^\d\s-()]{1,}/)
+  // because phone numbers are often used without a country code
+  // we need to do some extra work to validate potential phone numbers
+  // NOTE: This will still miss numbers that aren't valid in the user's
+  // browser locale or the US; we could try to geolocate the user, but then
+  // we'd still only be relying on their current location and not necessarily
+  // the country for which the phone number is valid
 
-  for (const text of splitPromptText) {
-    const sanitizedPromptText = text.replace(/\D/g, '')
-    const phoneNumber = '+'.concat(sanitizedPromptText)
-    if (phone(phoneNumber).isValid) {
-      return {
-        pii: true,
-        message: `<br><div align="left">• <strong>phone number</strong>: "${phoneNumber}"</div>`
-      }
+  // first let's get the user's locale from the browser and try to extract
+  // the country code from it
+  const userRegion: CountryCode =
+    (navigator?.language?.split('-')?.[
+      navigator?.language?.split('-').length - 1
+    ] as CountryCode) ??
+    (navigator?.languages?.[0]?.split('-')?.[
+      navigator?.language?.split('-').length - 1
+    ] as CountryCode) ??
+    // default to the US if we can't determine the user's region from the navigator language setting
+    'US'
+
+  // check the prompt for phone numbers using the country code of the user's locale region
+  const phoneNumbersWithUserRegion = findPhoneNumbersInText(promptText, {
+    defaultCountry: userRegion,
+    extended: true
+  })
+
+  let phoneNumbersWithoutUserRegion: NumberFound[] = []
+
+  if (userRegion !== 'US') {
+    // check the prompt for phone numbers using the US country code
+    phoneNumbersWithoutUserRegion = findPhoneNumbersInText(promptText, {
+      defaultCountry: 'US',
+      extended: true
+    })
+  }
+
+  // get a de-duplicated list of the found phone numbers
+  const foundPhoneNumbers: NumberFound[] = [
+    ...phoneNumbersWithUserRegion,
+    ...phoneNumbersWithoutUserRegion
+  ].filter(
+    (item, index, array) => array.findIndex((i) => i.number === item.number) === index
+  )
+
+  // if we found any phone numbers, add them to the warning message
+  if (foundPhoneNumbers.length > 0) {
+    return {
+      pii: true,
+      message: `<br />${foundPhoneNumbers
+        .map(
+          (phoneNumber) =>
+            `<div align="left">• <strong>phone number</strong>: ${phoneNumber.number.formatInternational()}</div>`
+        )
+        .join('<br />')}`
     }
   }
 
