@@ -18,7 +18,7 @@
     "addresser": "^1.1.20",
     "compromise": "^14.9.0",
     "luhn": "^2.4.1",
-    "phone": "^3.1.37",
+    "phone": "^3.1.42",
     "sweetalert2": "^11.7.20"
   },
   "devDependencies": {
