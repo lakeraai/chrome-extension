@@ -56,5 +56,8 @@
     "semi": false,
     "singleQuote": false,
     "proseWrap": "always"
-  }
+  },
+  "main": "babel.config.js",
+  "keywords": [],
+  "license": "ISC"
 }

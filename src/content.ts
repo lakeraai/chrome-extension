@@ -1,4 +1,4 @@
-import { RETRY_TIMEOUT } from 'config'
+import { RETRY_TIMEOUT } from './config'
 import { isPii, countTriggeredDetectorsWrapper } from './prompt'
 import Swal from 'sweetalert2'
 
