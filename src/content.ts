@@ -39,7 +39,7 @@ async function shouldProceed (textarea: HTMLTextAreaElement | null): Promise<boo
   if (pii) {
     const alert = await Swal.fire({
       backdrop: false,
-      title: 'Lakera',
+      title: 'Umbrella',
       html: message,
       imageUrl: `${chrome.runtime.getURL('../icon-128.png')}`,
       imageHeight: 80,
@@ -48,10 +48,10 @@ async function shouldProceed (textarea: HTMLTextAreaElement | null): Promise<boo
       showCancelButton: true,
       confirmButtonColor: '#19C37D',
       cancelButtonColor: '#DA2700',
-      confirmButtonText: 'Back to editing',
-      cancelButtonText: 'Proceed anyway',
+      confirmButtonText: 'Back to editing 🔍',
+      cancelButtonText: 'Proceed anyway 👍',
       footer:
-        'Built with ❤️ by <a href="https://www.lakera.ai/" target="_blank"><strong>Lakera</strong></a>'
+        'Built with ❤️ by <a href="https://www.Ujaotech.com/" target="_blank"><strong>UjaoTech</strong></a>'
     })
 
     if (alert.isConfirmed) {

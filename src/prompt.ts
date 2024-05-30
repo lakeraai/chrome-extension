@@ -1,23 +1,23 @@
-import luhn from 'luhn'
-import nlp from 'compromise'
-import phone from 'phone'
 import addresser from 'addresser'
+import nlp from 'compromise'
+import luhn from 'luhn'
+import phone from 'phone'
 import {
-  GROUP_CREDIT_CARD_DIGITS,
-  CREDIT_CARD_REGEX_STR,
   CHAR_LIMIT_RECOMMENDED,
   CHAR_LIMIT_SUPPORT,
+  CREDIT_CARD_REGEX_STR,
+  GROUP_CREDIT_CARD_DIGITS,
   LAST_CHARS_ADDRESS,
   LAST_SSN_DIGITS,
   SECRET_KEY_REGEX,
   SSN_REGEX
 } from './config'
 import {
-  type Pii,
-  registerDetectors,
-  getDetectorsMessage,
   countTriggeredDetectors,
-  getTriggeredDetectors
+  getDetectorsMessage,
+  getTriggeredDetectors,
+  type Pii,
+  registerDetectors
 } from './detectorsRegistry'
 
 export function isCreditCardNumber (promptText: string): Pii {
@@ -48,7 +48,7 @@ export function isName (promptText: string): Pii {
     const name = people[0]
     return {
       pii: true,
-      message: `<br><div align="left">• <strong>name</strong>: "${name}"</div>`
+      message: `<br><div align="left">• <strong>Name</strong>: "${name}"</div>`
     }
   }
 
@@ -63,7 +63,7 @@ export function isEmail (promptText: string): Pii {
     const email = emails[0]
     return {
       pii: true,
-      message: `<br><div align="left">• <strong>email</strong>: "${email}"</div>`
+      message: `<br><div align="left">• <strong>E-mail</strong>: "${email}"</div>`
     }
   }
 
@@ -79,7 +79,7 @@ export function isPhoneNumber (promptText: string): Pii {
     if (phone(phoneNumber).isValid) {
       return {
         pii: true,
-        message: `<br><div align="left">• <strong>phone number</strong>: "${phoneNumber}"</div>`
+        message: `<br><div align="left">• <strong>Phone Number</strong>: "${phoneNumber}"</div>`
       }
     }
   }
@@ -101,7 +101,7 @@ export function isAddress (promptText: string): Pii {
       currentUnsanitizedAddress = currentUnsanitizedAddress.trim()
       return {
         pii: true,
-        message: `<br><div align="left">• <strong>address</strong> in the following phrase: "${currentUnsanitizedAddress.slice(
+        message: `<br><div align="left">• <strong>Address</strong> in the following phrase: "${currentUnsanitizedAddress.slice(
           -LAST_CHARS_ADDRESS
         )}"</div>`
       }
@@ -118,7 +118,7 @@ export function isSocialSecurityNumber (promptText: string): Pii {
     const ssn = ssnMatch[0]
     return {
       pii: true,
-      message: `<br><div align="left">• <strong>social security number</strong> ending with *${ssn.slice(
+      message: `<br><div align="left">• <strong>KRA PIN number</strong> ending with *${ssn.slice(
         -LAST_SSN_DIGITS
       )}</div>`
     }
@@ -182,14 +182,14 @@ function extractPromptText (textarea: HTMLTextAreaElement | null): string {
   return promptText ?? ''
 }
 
-const standardMessage: string = 'Lakera extension detected the following issues:<br>'
+const standardMessage: string = 'Umbrella Detected Private Information in your Prompt:<br>'
 
 const overLimitMessage = (promptText: string): string => {
   return `<br><div align="left">• character limit recommended is <strong>${CHAR_LIMIT_RECOMMENDED}</strong>, your input has <strong>${promptText.length}</strong> characters</div>`
 }
 
 const overSupportMessage = (promptText: string): string => {
-  return `<br><div align="left">• character limit supported by Lakera extension is <strong>${CHAR_LIMIT_SUPPORT}</strong>, your input has <strong>${promptText.length}</strong> characters. No detectors are run over the supported limit!</div>`
+  return `<br><div align="left">• character limit supported by Umbrella is <strong>${CHAR_LIMIT_SUPPORT}</strong>, your input has <strong>${promptText.length}</strong> characters. No detectors are run over the supported limit!</div>`
 }
 
 export async function isPii (textarea: HTMLTextAreaElement | null): Promise<Pii> {
@@ -208,7 +208,7 @@ export async function isPii (textarea: HTMLTextAreaElement | null): Promise<Pii>
 
   // if other messages than the standard one have been added, then we alert the user to take action
   if (piiMessage !== standardMessage) {
-    piiMessage += '<br><br>Please remove the sensitive data to proceed!'
+    piiMessage += '<br><br>Please Remove Your Personal Information to proceed;'
     return { pii: true, message: piiMessage }
   }
   return { pii: false, message: '' }

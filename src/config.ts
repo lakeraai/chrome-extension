@@ -18,3 +18,13 @@ export const CHAR_LIMIT_RECOMMENDED = 2000
 export const CHAR_LIMIT_SUPPORT = 20000
 
 export const RETRY_TIMEOUT = 500
+
+//TODO:Add these REGEX FUNCTIONS  TO CAPTURE ADDITIONAL DATA
+
+// \b\d{10}\b == this is regex for a/c nos
+
+// [Aa]\d{9}[a-zA-Z] -- hii ni KRA regex
+
+// ^\d{5,8}$ -- this is for Id numbers
+
+// ^(?:\+254|0)7\d{8}$ -- hii ni for phone numbers

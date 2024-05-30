@@ -58,3 +58,6 @@ export async function getTriggeredDetectors (promptText: string): Promise<string
   }
   return triggeredDetectors
 }
+
+// TO DO:
+// add API end-points to an outer Managed Database and Dashboard

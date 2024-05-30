@@ -1,7 +1,7 @@
 {
-  "name": "lakera",
-  "version": "0.1.4",
-  "description": "Lakera - ChatGPT Data Leak Protection",
+  "name": "ujao",
+  "version": "0.1.0",
+  "description": "Umbrella AI; ChatGPT Information Protection",
   "scripts": {
     "dev": "vite build --watch",
     "build": "vite build",

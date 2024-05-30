@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Lakera - ChatGPT Data Leak Protection",
-  "description": "Lakera Chrome Extension provides a privacy guard that protects you against sharing sensitive information with ChatGPT.",
-  "version": "0.1.4",
+  "name": "Umbrella",
+  "description": "Umbrella provides a privacy guard that protects you against sharing sensitive information with ChatGPT.",
+  "version": "0.1.0",
   "action": {
     "default_icon": "icon-19.png",
     "default_popup": "src/popup/popup.html"
@@ -16,7 +16,7 @@
   },
   "content_scripts": [
     {
-      "matches": ["https://chat.openai.com/*"],
+      "matches": ["https://chatgpt.com/*"],
       "js": ["src/content.js"]
     }
   ],
@@ -26,7 +26,7 @@
   "web_accessible_resources": [
     {
       "resources": ["icon-128.png"],
-      "matches": ["https://chat.openai.com/*"]
+      "matches": ["https://chatgpt.com/*"]
     }
   ],
   "permissions": [
