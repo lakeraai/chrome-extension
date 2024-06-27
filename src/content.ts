@@ -20,7 +20,7 @@ async function fetchDomElements (): Promise<PromptElements> {
     'prompt-textarea'
   ) as HTMLTextAreaElement | null
   const button: HTMLButtonElement | null =
-    textarea?.parentElement?.querySelector('button') ?? null
+    textarea?.parentElement?.parentElement?.querySelector(':scope > button') ?? null
 
   if (textarea !== null && button !== null) {
     return { textarea, button }
@@ -95,7 +95,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
 async function fetchButton (textarea: HTMLTextAreaElement | null): Promise<HTMLButtonElement> {
   const button: HTMLButtonElement | null =
-    textarea?.parentElement?.querySelector('button') ?? null
+    textarea?.parentElement?.parentElement?.querySelector(':scope > button') ?? null
 
   if (button !== null) {
     return button
@@ -109,6 +109,7 @@ function addEventListenersToButton (textarea: HTMLTextAreaElement | null, button
   button?.addEventListener('click', (event) => {
     void (async () => {
       if (event.isTrusted) {
+        event.stopPropagation()
         event.preventDefault()
         const proceed = await shouldProceed(textarea)
         if (proceed) {
@@ -155,6 +156,7 @@ function addEventListeners (
   button?.addEventListener('click', (event) => {
     void (async () => {
       if (event.isTrusted) {
+        event.stopPropagation()
         event.preventDefault()
         const proceed = await shouldProceed(textarea)
         if (proceed) {

@@ -1,6 +1,6 @@
 {
   "name": "lakera",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Lakera - ChatGPT Data Leak Protection",
   "scripts": {
     "dev": "vite build --watch",
