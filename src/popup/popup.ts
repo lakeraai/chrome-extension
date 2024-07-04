@@ -1,4 +1,4 @@
-import { TIMEOUT_ADD_CLASS, CHATGPT_URL } from './popup_config'
+import { TIMEOUT_ADD_CLASS, CHAT_GPT_URLS } from './popup_config'
 
 function addEventListenersToToggles (detectorToggles: NodeListOf<Element>): void {
   for (const detector of detectorToggles) {
@@ -23,7 +23,7 @@ async function addTriggeredDetectorsToDom (): Promise<void> {
     if (
       tab.id !== undefined &&
       tab.url !== undefined &&
-      tab.url.includes(CHATGPT_URL)
+      CHAT_GPT_URLS.some(CHAT_GPT_URL => tab.url?.includes(CHAT_GPT_URL))
     ) {
       chrome.tabs.sendMessage(
         tab.id,
